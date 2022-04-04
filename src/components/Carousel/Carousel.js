@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
     subPoster : {
         position: 'absolute',
-        top : "230px",
+        top : "200px",
         left : "30px",
         display : 'flex',
         alignItems: 'center'
@@ -46,7 +46,7 @@ const Carousel = ({ content}) => {
 
       const slice = 3
       const contentItem = filterItem.slice(0,slice)
-      console.log(contentItem);
+      
 
 
       const items = contentItem?.map((item) => (
@@ -79,7 +79,7 @@ const Carousel = ({ content}) => {
       
       return(
           <div>
-      <AliceCarousel mouseTracking items={items} autoPlay  autoPlayInterval={1000} infinite disableButtonsControls disableDotsControls />
+      <AliceCarousel mouseTracking items={items} autoPlay  autoPlayInterval={3000} infinite disableButtonsControls disableDotsControls />
 
 
 
