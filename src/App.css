@@ -2,3 +2,10 @@
   --primary-color : #15171c
 }
 
+body{
+  background: #1e2129;
+}
+
+.img-silder{
+  width: 100%;
+}

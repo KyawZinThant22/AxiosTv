@@ -13,6 +13,7 @@ import { makeStyles } from '@mui/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SideDrawer from './Drawer';
 import { useNavigate } from 'react-router-dom';
+import { height } from '@mui/system';
 
 //dark theme
 const darkTheme = createTheme({
@@ -93,7 +94,7 @@ const Layout = ({children}) => {
 
           {/* App Bar */}
 
-          <AppBar position="static">
+          <AppBar position="static" elevation={1}>
             <Container maxWidth="xl">
             <Toolbar>
 
@@ -164,7 +165,13 @@ const Layout = ({children}) => {
           </AppBar>
           </Box>
         </ThemeProvider>
-        <div>{children}</div>
+
+
+       <div className={classes.home}>
+       <Container maxWidth="lg">
+              {children}
+        </Container>
+       </div>
     </div>
 
   
@@ -176,7 +183,12 @@ const Layout = ({children}) => {
 const useStyles = makeStyles({
   styleforLinks : {
      marginRight:'12px',
-    fontSize:' 18px !important'
+    fontSize:' 15px !important'
+  },
+  home :{
+    background:'#141414;',
+    height:"100vh",
+    color : "#fff"
   }
 })
 

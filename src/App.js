@@ -7,6 +7,7 @@ import Series from './Pages/Series/Series';
 import Show from './Pages/Show.js/Show';
 
 function App() {
+  
   return (
       
          <BrowserRouter>
