@@ -1,52 +1,51 @@
-import { ClassNames } from '@emotion/react'
-import { Button, Grid } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import {  Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-
 import { movieAPI } from '../../Api/movieApi'
-import Carousel from '../../components/Carousel/Carousel'
-import { img_300, noPicture } from '../../Config/api-config'
-
-
-const useStyles = makeStyles({
-    slidebarImg : {
-        height : "130px",
-        marginBottom : "8px"
-    },
-    desce: {
-        fontSize: "13px !important",
-        marginBottom: "5px"
-        
-    }
-})
+import CustomPagination from '../../components/Pagination'
+import SingleContent from '../../components/SingleContent/SingleContent'
+import TrendingPage from '../../components/Trending/TrendingPage'
 
 export const Movie = () => {
 
-    const classes = useStyles();
-
     // Hooks
     const [content , setContent] = useState([])
+    const [data , setData] = useState([])
+    const [page , setPage] = useState(1)
+    const [numofPages , setNumofPages] = useState(0)
     
     
 
     // fetch data
 
     const fetchTrending = async () => {
-        const { data } = await movieAPI.get(`trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`)
+        const { data } = await movieAPI.get(
+            `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=`
+          );
         
-   
         setContent(data.results)
+    }
 
+    const fetchData = async () => {
+        const { data } = await movieAPI.get(
+            `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
+          );
+        console.log(data.results);
+        setData(data.results)
+        setNumofPages(data.total_pages)
     }
 
 
+
+    
     useEffect(() => {
         fetchTrending()
+        fetchData()
 
         return () => {
             setContent([])
+            setData([])
         }
-    },[])
+    },[page])
 
 
         //get data from 20 array as 3
@@ -54,48 +53,48 @@ export const Movie = () => {
             return item
         })
   
-        const slice = 7
+        const slice = 8
         const contentItem = filterItem.slice(4,slice)
 
-        console.log(contentItem);
+        const language = (language) => {
+            if ( language === "en"){
+                return "English"
+            }else if (language === "es"){
+                return "Spain"
+            }else if (language === "ja"){
+                return "Japan"
+            }else return "None"
+        }
         
 
 
   return (
+    <>
+    
 
+            <TrendingPage contentItem={contentItem} content={content}/>
+Movies
+          <Grid container spacing={3} className="mt-4">
+                {data && data.map((item , index) => (
 
-   
+                    <SingleContent
+                        key = { index}
+                        poster = {item.poster_path}
+                        voting = {item.vote_average}
+                        Language = {language(item.original_language)}
+                        date = {item.release_date.slice(0,4)}
+                        title = {item.title || item.name}
 
-    <div className='pt-4'>
+                    />
+                ))}
 
-
-            <Grid container  >
-                <Grid item md ={8} xs = {12} className="pe-4 ">
-                 <div style={{position: 'relative'}}>
-                     <Carousel content={content}  media_type="movie"/>
-                 </div>
-                </Grid>
-                <Grid item md = {4} xs = {12} className="pt-3" >
-                        <div>
-                                {contentItem.map((item,index) => (
-                                <div key={index} className="d-flex">
-                                   <div className='d-flex'>
-                                        <img  className={classes.slidebarImg}  src={item.poster_path? `${img_300}/${item.poster_path}` : noPicture} alt={item.title || item.name} />
-                                        <div className="about ms-4 text-light">
-                                            <span className='me-2 ' style={{fontSize : "14px" , color : 'gray'}}>{item.vote_average} </span>
-                                            <span className='me-2 '  style={{fontSize : "14px" , color : 'gray'}}> {item.original_language ? "English" : item.original_language}</span>
-                                            <h6 className='mb-1'>{item.title || item.name}</h6>
-                                                <p  className={classes.desce}>{item.overview.slice(0,80)}..</p>
-                                                 
-                                                 <Button variant='outlined' size='small' color='error' sx={{fontSize: "10px"}}>Watch Now</Button>
-                                        </div>
-                                    </div>
-                                </div>
-                                ))}
-                        </div>
-                </Grid>
             </Grid>
 
-    </div>
+                    {numofPages > 1 && <CustomPagination setPage={setPage}  numofPages={numofPages} /> }
+
+    
+    </>
+
+    
   )
 }

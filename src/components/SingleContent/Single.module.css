@@ -1,0 +1,10 @@
+.singleImg {
+    height: 300px;
+    width: 100%;
+}
+
+.SingleContainer{
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    overflow: hidden;
+}

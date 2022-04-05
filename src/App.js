@@ -4,7 +4,8 @@ import Layout from './components/Feature/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Movie } from './Pages/Movie/Movie';
 import Series from './Pages/Series/Series';
-import Show from './Pages/Show.js/Show';
+import { Home } from './Home/Home';
+
 
 function App() {
   
@@ -13,12 +14,10 @@ function App() {
          <BrowserRouter>
           <Layout>
             <Routes>
-
-              <Route path = "/" element ={<Movie/>}/>
+              <Route  path = "/" element ={<Home/>}/>
+              <Route path = "/movies" element ={<Movie/>}/>
               <Route path = "/series" element ={<Series/>}/>
-              <Route path = "/shows" element ={<Show/>}/>
-
-              
+           
             </Routes>
             </Layout>
          </BrowserRouter>

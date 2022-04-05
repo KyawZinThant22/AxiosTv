@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom';
 
    // List of Items in the Drawer
    const CatagoryItems = [
-    { text: "Movie", path: `/` },
-    { text: "Series", path: `/series` },
-    { text: "Show", path: `/shows` },
+    { text: "Home", path: `/` },
+    { text: "Movie", path: `/movies` },
+    { text: "Serie", path: `/series` },
   ];
   
 

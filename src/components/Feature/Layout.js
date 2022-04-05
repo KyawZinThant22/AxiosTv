@@ -79,9 +79,10 @@ const Layout = ({children}) => {
 
  // List of Items in the Links
  const CatagoryItems = [
-  { text: "Movie", path: `/` },
+  { text: "Home", path: `/` },
+  { text: "Movie", path: `/movies` },
   { text: "Series", path: `/series` },
-  { text: "Show", path: `/shows` },
+  
 ];
 
   // classes for makeStyles
@@ -90,11 +91,11 @@ const Layout = ({children}) => {
   return (
     <div>
         <ThemeProvider theme={darkTheme}>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} >
 
           {/* App Bar */}
 
-          <AppBar position="static" elevation={1}>
+          <AppBar position="static" elevation={1} className={classes.mainbar}>
             <Container maxWidth="xl">
             <Toolbar>
 
@@ -139,7 +140,7 @@ const Layout = ({children}) => {
                 />
               </Search>
 
-              <Typography   onClick ={ () => {navigate("/")}} variant='h5'  sx = {{display : {xs : 'flex' , md: 'none'}}}>
+              <Typography   onClick ={ () => {navigate("/")}} variant='h5'  sx = {{display : {sm : 'flex' , md: 'none' , lg:'none'}}}>
                   Ax
               </Typography>
 
@@ -168,7 +169,7 @@ const Layout = ({children}) => {
 
 
        <div className={classes.home}>
-       <Container maxWidth="lg">
+       <Container maxWidth="xl">
               {children}
         </Container>
        </div>
@@ -187,8 +188,13 @@ const useStyles = makeStyles({
   },
   home :{
     background:'#141414;',
-    height:"100vh",
+   
     color : "#fff"
+  },
+  mainbar: {
+    position: "fixed !important",
+    zIndex: 100,
+    top: 0,
   }
 })
 

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
     subPoster : {
         position: 'absolute',
-        top : "200px",
+        top : "330px",
         left : "30px",
         display : 'flex',
         alignItems: 'center'
@@ -53,8 +53,8 @@ const Carousel = ({ content}) => {
          <>
             
             <img  className={classes.img} src={item.poster_path? `${img_500}/${item.backdrop_path}` : noPicture} alt="" />
-
-            <div className={classes.subPoster}>
+            <div className='d-sm-none d-md-none d-lg-block'>
+            <div className={classes.subPoster} >
                             
                     <img  className={classes.subPic} src={item.poster_path? `${img_300}/${item.poster_path}` : noPicture} alt="" />
 
@@ -70,16 +70,15 @@ const Carousel = ({ content}) => {
                            <p className='mt-3'>{item.overview.slice(0,150)}</p>
                         </div>
             </div> 
+            </div>
 
            
          </>
       ))
-     
-
       
       return(
           <div>
-      <AliceCarousel mouseTracking items={items} autoPlay  autoPlayInterval={3000} infinite disableButtonsControls disableDotsControls />
+      <AliceCarousel mouseTracking items={items} autoPlay  autoPlayInterval={1500} infinite disableButtonsControls disableDotsControls />
 
 
 
