@@ -19,8 +19,7 @@ export const Movie = () => {
 
     const fetchTrending = async () => {
         const { data } = await movieAPI.get(
-            `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=`
-          );
+            `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`);
         
         setContent(data.results)
     }
@@ -75,20 +74,26 @@ export const Movie = () => {
             <TrendingPage contentItem={contentItem} content={content}/>
 Movies
           <Grid container spacing={3} className="mt-4">
-                {data && data.map((item , index) => (
+                {data.length > 0 ? (data.map((item , index) => (
 
                     <SingleContent
+
+                        id = {item.id}
                         key = { index}
                         poster = {item.poster_path}
                         voting = {item.vote_average}
                         Language = {language(item.original_language)}
                         date = {item.release_date.slice(0,4)}
                         title = {item.title || item.name}
+                        media_type = {item.media_type}
+
 
                     />
-                ))}
+                ))) : <div className="lds-hourglass"></div>}
 
             </Grid>
+
+           
 
                     {numofPages > 1 && <CustomPagination setPage={setPage}  numofPages={numofPages} /> }
 

@@ -24,15 +24,13 @@ const Series = () => {
 
 
   const fetchData = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`)
-    console.log(data.results);
+    const { data } = await movieAPI.get(`/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`)
+    
     setData(data.results)
     setNumofPages(data.total_pages)
 
 
 }
-
-
 
   useEffect(() => {
       fetchTrending()
@@ -71,16 +69,20 @@ const Series = () => {
       Series
 
         <Grid container spacing={2} className="mt-4">
-                {data && data.map((item , index) => (
+                {data.length > 0 ?( data.map((item , index) => (
 
                     <SingleContent
+                    id = {item.id}
+                    key={index}
                     poster = {item.poster_path}
                     voting = {item.vote_average}
                     Language = {language(item.original_language)}
                     date = {item.first_air_date.slice(0,4)}
                     title = {item.title || item.name}
+                    media_type = {item.media_type}
+
                     />
-                ))}
+                ))) : <div className="lds-hourglass"></div>}
 
             </Grid>
             {numofPages > 1 && <CustomPagination setPage={setPage}  numofPages={numofPages} /> }

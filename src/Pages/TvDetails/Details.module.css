@@ -1,0 +1,15 @@
+.imgLeft{
+    margin-left: 20rem;
+}
+
+@media (max-width :646px) {
+    .imgLeft{
+        margin-left : 20px;
+        margin-bottom: 20px
+    }
+    .aboutDetails{
+        text-align: center;
+    }
+    
+    
+}

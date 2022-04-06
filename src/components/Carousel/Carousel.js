@@ -1,11 +1,12 @@
-
+import '../../App.css'
 import { makeStyles } from '@mui/styles';
-
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import AliceCarousel from 'react-alice-carousel';
-
 import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, img_500, noPicture } from '../../Config/api-config';
+import { Link } from 'react-router-dom';
+import styles from "./Carousel.module.css"
+import { style } from '@mui/system';
 
 
 
@@ -22,13 +23,11 @@ const useStyles = makeStyles({
         top : "330px",
         left : "30px",
         display : 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
     }
+   
 
 })
-
-
-
 
 
 
@@ -51,10 +50,10 @@ const Carousel = ({ content}) => {
 
       const items = contentItem?.map((item) => (
          <>
-            
+            <Link to={`${item.id}`} className={styles.Links}>
             <img  className={classes.img} src={item.poster_path? `${img_500}/${item.backdrop_path}` : noPicture} alt="" />
             <div className='d-sm-none d-md-none d-lg-block'>
-            <div className={classes.subPoster} >
+                <div className={classes.subPoster} >
                             
                     <img  className={classes.subPic} src={item.poster_path? `${img_300}/${item.poster_path}` : noPicture} alt="" />
 
@@ -71,6 +70,8 @@ const Carousel = ({ content}) => {
                         </div>
             </div> 
             </div>
+
+            </Link>
 
            
          </>

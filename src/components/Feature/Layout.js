@@ -188,6 +188,7 @@ const useStyles = makeStyles({
   },
   home :{
     background:'#141414;',
+    minHeight: '100vh',
    
     color : "#fff"
   },

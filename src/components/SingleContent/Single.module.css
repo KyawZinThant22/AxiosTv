@@ -7,4 +7,21 @@
     background-color: #1e1e1e;
     border-radius: 5px;
     overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s;
 }
+
+.SingleContainer:hover {
+    transform: scale(1.02)
+  }
+
+  a{
+      text-decoration: none;
+  }
+  
+ @media (max-width :700px)  {
+     .singleImg{
+        height: 150px;
+        width: 100%;
+     }
+ }

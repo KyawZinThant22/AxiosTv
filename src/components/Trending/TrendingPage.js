@@ -2,11 +2,9 @@ import { Button, Grid } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { img_300, noPicture } from '../../Config/api-config'
 import Carousel from '../Carousel/Carousel'
-
-
-
 
 
 const useStyles = makeStyles({
@@ -27,7 +25,7 @@ const TrendingPage = ({contentItem,content}) => {
     <div className='pt-4 mt-5 pt-5'>
     <Grid container  >
         <Grid item md ={8} xs = {12} className="pe-4 ">
-         <div style={{position: 'relative'}}>
+         <div style={{position: 'relative', cursor:'pointer'}}>
              <Carousel content = {content}  media_type="movie"/>
          </div>
         </Grid>
@@ -43,7 +41,9 @@ const TrendingPage = ({contentItem,content}) => {
                                     <h6 className='mb-1'>{item.title || item.name}</h6>
                                         <p  className={classes.desce}>{item.overview.slice(0,80)}..</p>
                                          
-                                         <Button variant='outlined' size='small' color='error' sx={{fontSize: "10px"}}>Watch Now</Button>
+                                        <Link to = {`${item.id}`}>
+                                            <Button variant='outlined' size='small' color='error' sx={{fontSize: "10px"}}>Watch Now</Button>
+                                        </Link>
                                 </div>
                             </div>
                         </div>
