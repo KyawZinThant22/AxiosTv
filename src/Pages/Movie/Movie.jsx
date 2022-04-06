@@ -85,7 +85,7 @@ Movies
                         Language = {language(item.original_language)}
                         date = {item.release_date.slice(0,4)}
                         title = {item.title || item.name}
-                        media_type = {item.media_type}
+                       
 
 
                     />

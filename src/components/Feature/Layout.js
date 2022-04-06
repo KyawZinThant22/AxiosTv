@@ -8,12 +8,12 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Container, Drawer} from '@mui/material';
+import { Button, Container} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SideDrawer from './Drawer';
 import { useNavigate } from 'react-router-dom';
-import { height } from '@mui/system';
+
 
 //dark theme
 const darkTheme = createTheme({

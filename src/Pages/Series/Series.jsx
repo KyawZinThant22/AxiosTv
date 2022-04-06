@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { movieAPI } from '../../Api/movieApi';
 import CustomPagination from '../../components/Pagination';
@@ -51,11 +50,11 @@ const Series = () => {
   const contentItem = filterItem.slice(4,slice)
 
   const language = (language) => {
-    if ( language == "en"){
+    if ( language === "en"){
         return "English"
-    }else if (language == "es"){
+    }else if (language === "es"){
         return "Spain"
-    }else if (language == "ja"){
+    }else if (language === "ja"){
         return "Japan"
     }else return "None"
 }
@@ -79,8 +78,7 @@ const Series = () => {
                     Language = {language(item.original_language)}
                     date = {item.first_air_date.slice(0,4)}
                     title = {item.title || item.name}
-                    media_type = {item.media_type}
-
+                   
                     />
                 ))) : <div className="lds-hourglass"></div>}
 

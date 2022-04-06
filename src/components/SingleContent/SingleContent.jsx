@@ -1,5 +1,5 @@
 import { Button, Grid, Typography } from '@mui/material';
-import React, { useContext } from 'react'
+import React from 'react'
 import { img_300 } from '../../Config/api-config';
 import styles from "./Single.module.css"
 import StarIcon from '@mui/icons-material/Star';
@@ -16,7 +16,7 @@ const SingleContent = (props) => {
 
 
 
-    const {poster,voting , Language , date , title ,id, media_type} = props;
+    const {poster,voting , Language , date , title ,id} = props;
 
   
 

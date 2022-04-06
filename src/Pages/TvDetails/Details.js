@@ -3,7 +3,7 @@ import { Button, Grid } from '@mui/material';
 import React, {  useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { movieAPI } from '../../Api/movieApi';
-import { img_300, img_500 } from '../../Config/api-config';
+import { img_300 } from '../../Config/api-config';
 import styles from "./Details.module.css"
 
 const Details = () => {
@@ -14,7 +14,6 @@ const Details = () => {
     // hooks
     const [movie , setMovie] = useState([]);
     const [movieVideo , setMovieVideo] = useState()
-
     const [Series , setSeries] = useState([]);
     const [SeriesVideo , setSeriesVideo] = useState()
   
@@ -26,10 +25,7 @@ const Details = () => {
         const { data } = await movieAPI.get(`/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
         setMovie(data)
         console.log(data);
-        setSeries(false)
-
-       
-       
+        setSeries(false) 
     }
   
 //   fetch series video according to id
@@ -93,7 +89,7 @@ const Details = () => {
                                 `${img_300}${movie.poster_path}` ||
                                 "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"
                                 }
-                                alt="movie logo"
+                                alt={movie.name || movie.title}
                                 className={styles.imgLeft}
                             />
                 </Grid> 
@@ -145,7 +141,8 @@ const Details = () => {
                                 `${img_300}${Series.poster_path}` ||
                                 "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg"
                                 }
-                                alt="Series logo"
+                                alt={Series.name || Series.title}
+
                                 className={styles.imgLeft}
                             />
                 </Grid> 

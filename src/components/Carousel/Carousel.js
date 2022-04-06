@@ -6,7 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { img_300, img_500, noPicture } from '../../Config/api-config';
 import { Link } from 'react-router-dom';
 import styles from "./Carousel.module.css"
-import { style } from '@mui/system';
+
 
 
 
@@ -64,7 +64,7 @@ const Carousel = ({ content}) => {
 
                            <span className='me-2'>{item.vote_average} </span>
                            <span className='me-2'> {item.original_language ? "English" : item.original_language}</span>
-                           <span>{item.media_type == 'movie'?  "Movie" : "Tv Series"}</span>
+                           <span>{item.media_type === 'movie'?  "Movie" : "Tv Series"}</span>
 
                            <p className='mt-3'>{item.overview.slice(0,150)}</p>
                         </div>
